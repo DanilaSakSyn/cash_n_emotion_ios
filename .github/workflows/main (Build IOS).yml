@@ -1,7 +1,16 @@
 name: Build Flutter iOS
 
 
-on: workflow_dispatch
+on: 
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+    branches:
+      - main
+      - develop
+  workflow_dispatch:
 
 
 
@@ -91,16 +100,31 @@ jobs:
         env:
           APPSTORE_KEY_ID: ${{ secrets.APPSTORE_KEY_ID }}
           APPSTORE_ISSUER_ID: ${{ secrets.APPSTORE_ISSUER_ID }}
-          APPSTORE_P8_CONTENT: ${{ secrets.APPSTORE_P8_CONTENT }}
+          APPSTORE_P8_CONTENT: ${{ secrets.APPSTORE_P8 }}
         run: |
           mkdir -p $HOME/private_keys
-          echo "$APPSTORE_P8_CONTENT" > $HOME/private_keys/AuthKey_${APPSTORE_KEY_ID}.p8
-          chmod 600 $HOME/private_keys/AuthKey_${APPSTORE_KEY_ID}.p8
-          echo "APP_STORE_CONNECT_API_KEY_PATH=$HOME/private_keys/AuthKey_${APPSTORE_KEY_ID}.p8" >> $GITHUB_ENV
+
+          # Write APPSTORE_P8_CONTENT to a file robustly:
+          # - If the secret contains the literal BEGIN line, write it directly
+          # - Otherwise assume the secret is base64 and decode it
+          # - Remove any stray CR (\r) characters which can break OpenSSL
+          KEY_PATH=$HOME/private_keys/AuthKey_${APPSTORE_KEY_ID}.p8
+          if printf '%s' "$APPSTORE_P8_CONTENT" | grep -q "BEGIN PRIVATE KEY"; then
+            printf '%s' "$APPSTORE_P8_CONTENT" | tr -d '\r' > "$KEY_PATH"
+          else
+            printf '%s' "$APPSTORE_P8_CONTENT" | base64 --decode 2>/dev/null | tr -d '\r' > "$KEY_PATH" || {
+              echo "Failed to decode APPSTORE_P8_CONTENT as base64 and no BEGIN marker found. Please ensure the secret contains the raw .p8 contents (including -----BEGIN PRIVATE KEY-----) or a base64-encoded value." >&2
+              exit 1
+            }
+          fi
+
+          chmod 600 "$KEY_PATH"
+          echo "APP_STORE_CONNECT_API_KEY_PATH=$KEY_PATH" >> $GITHUB_ENV
+
           echo "Checking API key file format..."
-          head -1 $HOME/private_keys/AuthKey_${APPSTORE_KEY_ID}.p8
-          tail -1 $HOME/private_keys/AuthKey_${APPSTORE_KEY_ID}.p8
-          wc -l $HOME/private_keys/AuthKey_${APPSTORE_KEY_ID}.p8
+          head -n 1 "$KEY_PATH" || true
+          tail -n 1 "$KEY_PATH" || true
+          echo "Key file lines: $(wc -l < \"$KEY_PATH\")"
       
       ###########################
       #  Install Fastlane       #
