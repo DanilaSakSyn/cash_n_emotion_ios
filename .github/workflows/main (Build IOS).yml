@@ -233,7 +233,8 @@ jobs:
           flutter build ipa \
             --release \
             --export-options-plist=ExportOptions.plist \
-            --build-number=$BUILD_NUMBER
+            --build-number=$BUILD_NUMBER \
+            --no-tree-shake-icons
       
       ###########################
       #     Upload IPA          #
