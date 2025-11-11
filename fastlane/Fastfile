@@ -96,11 +96,27 @@ desc "Sync codesigning certificates for Build"
     # Read, update and write ExportOptions.plist
     require 'plist'
     export_options = Plist.parse_xml(export_options_path)
-    export_options['teamID'] = ENV['APPLE_TEAM_ID']
+
+    # If the ExportOptions.plist is missing or couldn't be parsed, create a minimal
+    # export_options structure so we can populate teamID and provisioningProfiles.
+    if export_options.nil?
+      UI.message("ExportOptions.plist not found or invalid at #{export_options_path}. Creating a minimal ExportOptions structure.")
+      export_options = {
+        'method' => 'app-store',
+        'teamID' => ENV['APPLE_TEAM_ID'],
+        'provisioningProfiles' => {}
+      }
+    end
+
+    # Ensure teamID is set when available
+    export_options['teamID'] = ENV['APPLE_TEAM_ID'] if ENV['APPLE_TEAM_ID'] && !ENV['APPLE_TEAM_ID'].empty?
+
+    # Populate provisioningProfiles mapping
     export_options['provisioningProfiles'] = {
       ENV['IOS_BUNDLE_ID'] => main_profile,
       "#{ENV['IOS_BUNDLE_ID']}.notifications" => extension_profile
     }
+
     File.write(export_options_path, export_options.to_plist)
     
     # Determine a safe build number.
