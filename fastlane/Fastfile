@@ -5,6 +5,17 @@ match_org, match_repo = (ENV["MATCH_REPOSITORY"]||"").split("/")
 
 platform :ios do
   
+  lane :init_ci do
+    github_action(
+      api_token: ENV["GH_PAT"],
+      org: org,
+      repo: repo,
+      match_org: match_org,
+      match_repo: match_repo,
+      writable_deploy_key: true
+    )
+  end
+  
   desc "Sync codesigning certificates"
   lane :sync_certificates do
     api_key = app_store_connect_api_key(
@@ -24,15 +35,6 @@ platform :ios do
       readonly: false,
       api_key: api_key
     )
-  end
-
-  desc "Initial CI setup: run setup_ci and sync certificates"
-  lane :init_ci do
-    # Prepare CI environment
-    setup_ci
-
-    # Ensure provisioning profiles and certs are synced to the repo
-    sync_certificates
   end
 
   desc "Build and upload to TestFlight"
