@@ -34,7 +34,6 @@ desc "Sync codesigning certificates"
       git_url: "git@github.com:#{match_org}/#{match_repo}.git",
       app_identifier: [main_app_bundle_id, extension_bundle_id],
       api_key: api_key
-      readonly: false
     )
   end
 
