@@ -26,6 +26,15 @@ platform :ios do
     )
   end
 
+  desc "Initial CI setup: run setup_ci and sync certificates"
+  lane :init_ci do
+    # Prepare CI environment
+    setup_ci
+
+    # Ensure provisioning profiles and certs are synced to the repo
+    sync_certificates
+  end
+
   desc "Build and upload to TestFlight"
   lane :beta do
     setup_ci
