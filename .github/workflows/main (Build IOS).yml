@@ -134,7 +134,7 @@ jobs:
         run: |
           eval "$(ssh-agent -s)"
           echo "$MATCH_DEPLOY_KEY" | tr -d '\r' | ssh-add -
-          bundle exec fastlane ios sync_certificates
+          bundle exec fastlane ios sync_certificates_for_build
       
       ###########################
       #  Export Xcode Project   #
