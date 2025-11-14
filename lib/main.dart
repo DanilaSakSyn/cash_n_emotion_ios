@@ -1,3 +1,4 @@
+import 'package:app_tracking_transparency/app_tracking_transparency.dart';
 import 'package:drop_cost_ios/app/providers/theme_provider.dart';
 import 'package:drop_cost_ios/app/providers/transaction_provider.dart';
 import 'package:drop_cost_ios/core/services/sdk_initializer.dart';
@@ -11,6 +12,9 @@ import 'core/screens/splash_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized().addPostFrameCallback((_) async {
+    final status = await AppTrackingTransparency.requestTrackingAuthorization();
+  });
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   SdkInitializer.prefs = await SharedPreferences.getInstance();
   await SdkInitializer.loadRuntimeStorageToDevice();

@@ -181,10 +181,10 @@ class SdkInitializer {
       return;
     }
 
-    WidgetsFlutterBinding.ensureInitialized().addPostFrameCallback((_) async {
-      final status =
-          await AppTrackingTransparency.requestTrackingAuthorization();
-    });
+    // WidgetsFlutterBinding.ensureInitialized().addPostFrameCallback((_) async {
+    //   final status =
+    //       await AppTrackingTransparency.requestTrackingAuthorization();
+    // });
     //initAppsFlyer();
   }
 
