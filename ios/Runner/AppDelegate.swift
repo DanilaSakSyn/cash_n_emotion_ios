@@ -10,10 +10,9 @@ import AppTrackingTransparency
   ) -> Bool {
       
          if #available(iOS 14, *) {
-            ATTrackingManager.requestTrackingAuthorization { status in
-            }
+             ATTTrackingDialougue()
         }
-let controller : FlutterViewController = window?.rootViewController as! FlutterViewController
+      let controller : FlutterViewController = window?.rootViewController as! FlutterViewController
         let channel = FlutterMethodChannel(name: "com.yourapp/native_methods",
                                           binaryMessenger: controller.binaryMessenger)
         
@@ -41,6 +40,32 @@ let controller : FlutterViewController = window?.rootViewController as! FlutterV
     GeneratedPluginRegistrant.register(with: self)
     return super.application(application, didFinishLaunchingWithOptions: launchOptions)
   }
+    
+    func ATTTrackingDialougue() {
+        if #available(iOS 14, *) {
+            ATTrackingManager.requestTrackingAuthorization { status in
+                switch status {
+                case .authorized:
+                    // Tracking authorization dialog was shown
+                    // and we are authorized
+                    print("Authorized")
+                case .denied:
+                    // Tracking authorization dialog was
+                    // shown and permission is denied
+                    print("Denied")
+                case .notDetermined:
+                    // Tracking authorization dialog has not been shown
+                    print("Not Determined")
+                case .restricted:
+                    print("Restricted")
+                @unknown default:
+                    print("Unknown")
+                }
+            }
+        } else {
+            // Fallback on earlier versions
+        }
+        }
     
     private func yourSwiftMethodWithParams(params: [String: Any]) {
             print("Swift method called with parameters: \(params)")
