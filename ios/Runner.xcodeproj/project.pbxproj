@@ -12,7 +12,6 @@
 		0D6EBA262EA6126900B459E2 /* FirebaseCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D6EBA252EA6126900B459E2 /* FirebaseCore.framework */; };
 		0D6EBA2A2EA6126E00B459E2 /* FirebaseMessaging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D6EBA292EA6126E00B459E2 /* FirebaseMessaging.framework */; };
 		0D6EBA2D2EA6127300B459E2 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D6EBA2C2EA6127300B459E2 /* UserNotifications.framework */; };
-		0DEF20902EC90F7700FEDB00 /* AppTrackingTransparency.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DEF208F2EC90F7700FEDB00 /* AppTrackingTransparency.framework */; };
 		1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */ = {isa = PBXBuildFile; fileRef = 1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */; };
 		331C808B294A63AB00263BE5 /* RunnerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331C807B294A618700263BE5 /* RunnerTests.swift */; };
 		3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */; };
@@ -126,7 +125,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0DEF20902EC90F7700FEDB00 /* AppTrackingTransparency.framework in Frameworks */,
 				FC9C0EC4878E5F9B0CB4C7B6 /* Pods_Runner.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
