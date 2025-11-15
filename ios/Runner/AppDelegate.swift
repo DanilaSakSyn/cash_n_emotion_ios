@@ -1,7 +1,7 @@
 import Flutter
 import UIKit
 import flutter_local_notifications
-
+import AppTrackingTransparency
 @main
 @objc class AppDelegate: FlutterAppDelegate {
   override func application(
