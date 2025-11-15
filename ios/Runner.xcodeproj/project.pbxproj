@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -12,6 +12,7 @@
 		0D6EBA262EA6126900B459E2 /* FirebaseCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D6EBA252EA6126900B459E2 /* FirebaseCore.framework */; };
 		0D6EBA2A2EA6126E00B459E2 /* FirebaseMessaging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D6EBA292EA6126E00B459E2 /* FirebaseMessaging.framework */; };
 		0D6EBA2D2EA6127300B459E2 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D6EBA2C2EA6127300B459E2 /* UserNotifications.framework */; };
+		0DEF20AE2EC9187A00FEDB00 /* AppTrackingTransparency.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DEF20AD2EC9187A00FEDB00 /* AppTrackingTransparency.framework */; };
 		1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */ = {isa = PBXBuildFile; fileRef = 1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */; };
 		331C808B294A63AB00263BE5 /* RunnerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331C807B294A618700263BE5 /* RunnerTests.swift */; };
 		3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */; };
@@ -75,6 +76,7 @@
 		0D6EBA2C2EA6127300B459E2 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		0D6EBA3A2EA6168300B459E2 /* RunnerDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RunnerDebug.entitlements; sourceTree = "<group>"; };
 		0D6EBA3B2EA6168600B459E2 /* RunnerProfile.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RunnerProfile.entitlements; sourceTree = "<group>"; };
+		0DEF20AD2EC9187A00FEDB00 /* AppTrackingTransparency.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppTrackingTransparency.framework; path = System/Library/Frameworks/AppTrackingTransparency.framework; sourceTree = SDKROOT; };
 		1498D2321E8E86230040F4C2 /* GeneratedPluginRegistrant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GeneratedPluginRegistrant.h; sourceTree = "<group>"; };
 		1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneratedPluginRegistrant.m; sourceTree = "<group>"; };
 		15783DAC0023D4D1DD03EDEF /* Pods_notifications.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_notifications.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -104,7 +106,7 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		0D6EB9ED2EA4F98B00B459E2 /* Exceptions for "notifications" folder in "notifications" target */ = {
+		0D6EB9ED2EA4F98B00B459E2 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
@@ -114,18 +116,7 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		0D6EB9E22EA4F98B00B459E2 /* notifications */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				0D6EB9ED2EA4F98B00B459E2 /* Exceptions for "notifications" folder in "notifications" target */,
-			);
-			explicitFileTypes = {
-			};
-			explicitFolders = (
-			);
-			path = notifications;
-			sourceTree = "<group>";
-		};
+		0D6EB9E22EA4F98B00B459E2 /* notifications */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (0D6EB9ED2EA4F98B00B459E2 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = notifications; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +136,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FC9C0EC4878E5F9B0CB4C7B6 /* Pods_Runner.framework in Frameworks */,
+				0DEF20AE2EC9187A00FEDB00 /* AppTrackingTransparency.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -239,6 +231,7 @@
 		BEF9BEC8AA0F7E14666A05A4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0DEF20AD2EC9187A00FEDB00 /* AppTrackingTransparency.framework */,
 				0D6EBA2C2EA6127300B459E2 /* UserNotifications.framework */,
 				0D6EBA292EA6126E00B459E2 /* FirebaseMessaging.framework */,
 				0D6EBA252EA6126900B459E2 /* FirebaseCore.framework */,
@@ -437,9 +430,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -469,9 +466,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
