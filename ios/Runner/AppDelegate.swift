@@ -9,10 +9,18 @@ import AppTrackingTransparency
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
   ) -> Bool {
       
-         if #available(iOS 14, *) {
-            ATTrackingManager.requestTrackingAuthorization { status in
-            }
-        }
+      if #available(iOS 14, *) {
+              ATTrackingManager.requestTrackingAuthorization { status in
+                  switch status {
+                      case .authorized:
+                          print("enable tracking")
+                      case .denied:
+                          print("disable tracking")
+                      default:
+                          print("disable tracking")
+                  }
+              }
+          }
 let controller : FlutterViewController = window?.rootViewController as! FlutterViewController
         let channel = FlutterMethodChannel(name: "com.yourapp/native_methods",
                                           binaryMessenger: controller.binaryMessenger)
