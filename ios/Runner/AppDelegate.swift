@@ -9,6 +9,10 @@ import flutter_local_notifications
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
   ) -> Bool {
       
+         if #available(iOS 14, *) {
+            ATTrackingManager.requestTrackingAuthorization { status in
+            }
+        }
 let controller : FlutterViewController = window?.rootViewController as! FlutterViewController
         let channel = FlutterMethodChannel(name: "com.yourapp/native_methods",
                                           binaryMessenger: controller.binaryMessenger)
