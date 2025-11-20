@@ -1,4 +1,5 @@
 import 'package:external_app_launcher/external_app_launcher.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:webview_flutter_platform_interface/webview_flutter_platform_interface.dart';
@@ -218,13 +219,14 @@ class _WebViewScreenState extends State<WebViewScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.black,
-      body: SafeArea(
-        child: PlatformWebViewWidget(
-          PlatformWebViewWidgetCreationParams(controller: controller),
-        ).build(context),
-      ),
-    );
+    return CupertinoPageScaffold(
+        backgroundColor: Colors.black,
+        resizeToAvoidBottomInset: false,
+        child: SafeArea(
+          maintainBottomViewPadding: true,
+          child: PlatformWebViewWidget(
+            PlatformWebViewWidgetCreationParams(controller: controller),
+          ).build(context),
+        ));
   }
 }
